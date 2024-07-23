@@ -1,0 +1,8 @@
+#Etape1: creation du docker
+docker build --no-cache --build-arg FLASK_DEBUG=True --build-arg FLASK_APP=api8inf349 --build-arg REDIS_URL=redis://host.docker.internal:6379 --build-arg DB_HOST=host.docker.internal --build-arg DB_USER=user --build-arg DB_PASSWORD=pass --build-arg DB_PORT=5432 --build-arg DB_NAME=api8inf349 -t api8inf349 .
+
+#Etape2: Demarrage du conteneur:
+docker run -p 8080:5000 api8inf349
+
+#Etape3: Demarrage du worker
+docker exec --workdir /site [id Du Conteneur] flask worker
